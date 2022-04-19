@@ -104,6 +104,19 @@ function acf_setup_blocks_template_choices( $field ) {
     
 }
 
+add_filter( 'acf/load_field/name=blocks-thumbnail-size', 'acf_setup_blocks_img_sizes' );
+function acf_setup_blocks_img_sizes( $field ) {
+
+    $field['choices'] = array();
+
+    foreach( get_intermediate_image_sizes() as $value ) {
+        $field['choices'][$value] = $value;
+    }
+
+    return $field;
+
+}
+
 
 /**
  * Pull all files found in $directory but get rid of the dots that scandir() picks up in Linux environments

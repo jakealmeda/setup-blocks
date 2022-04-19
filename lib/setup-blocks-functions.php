@@ -16,6 +16,8 @@ class SetupBlocksMain {
         $bars = array(
             'title'             => get_field( 'blocks-title' ),
             'summary'           => get_field( 'blocks-summary' ),
+            'thumbnail'         => get_field( 'blocks-thumbnail' ),
+            'thumbnai_size'     => get_field( 'blocks-thumbnail-size' ),
             'block_class'       => $this->setup_array_validation( 'className', $block ),
             'wrap_sel'          => get_field( 'blocks-section-class' ),
             'wrap_sty'          => get_field( 'blocks-section-style' ),
