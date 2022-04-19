@@ -59,6 +59,61 @@
                 "new_lines": ""
             },
             {
+                "key": "field_625e3afea3fed",
+                "label": "Thumbnail",
+                "name": "blocks-thumbnail",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_625e3b464f5e1",
+                "label": "Size",
+                "name": "blocks-thumbnail-size",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "thumbnail": "thumbnail",
+                    "medium": "medium",
+                    "medium_large": "medium_large",
+                    "large": "large",
+                    "1536x1536": "1536x1536",
+                    "2048x2048": "2048x2048",
+                    "sidebar-featured": "sidebar-featured",
+                    "genesis-singular-images": "genesis-singular-images"
+                },
+                "default_value": false,
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
                 "key": "field_625a9d3375e0f",
                 "label": "Layout",
                 "name": "",
@@ -89,7 +144,8 @@
                 },
                 "choices": {
                     "h1-title.php": "h1-title",
-                    "orange.php": "orange"
+                    "orange.php": "orange",
+                    "thumbnail.php": "thumbnail"
                 },
                 "default_value": false,
                 "allow_null": 0,
