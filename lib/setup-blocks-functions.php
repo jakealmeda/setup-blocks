@@ -11,6 +11,8 @@ class SetupBlocksMain {
 
     public function setup_blocks_main( $block ) {
 
+        $fields_func = new SetupBlockGen();
+
         global $bars;
 
         $bars = array(
@@ -18,21 +20,26 @@ class SetupBlocksMain {
             'summary'           => get_field( 'blocks-summary' ),
             'thumbnail'         => get_field( 'blocks-thumbnail' ),
             'thumbnai_size'     => get_field( 'blocks-thumbnail-size' ),
-            'block_class'       => $this->setup_array_validation( 'className', $block ),
             'wrap_sel'          => get_field( 'blocks-section-class' ),
             'wrap_sty'          => get_field( 'blocks-section-style' ),
+            'block_class'       => $this->setup_array_validation( 'className', $block ),
         );
 
-        /*
-            info_title
-            info_summary
-            info_innerblock
-            info_template
-            info_class
-            info_style
-        */
         echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
 
+/*        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+
+            $bars = '';
+
+//            $bars = array(
+//                $
+//            );
+            var_dump($value[ 'fields' ]);
+
+            echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
+
+        }
+*/
     }
 
 

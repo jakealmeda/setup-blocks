@@ -40,8 +40,9 @@ add_action( 'acf/init', 'setup_blocks_acf_init' );
 function setup_blocks_acf_init() {
 
     $z = new SetupBlocksVariables();
+    $fields_func = new SetupBlockGen();
 
-    $blocks = array(
+    /*$blocks = array(
 
         'info_block' => array(
             'name'                  => 'info_block',
@@ -59,7 +60,27 @@ function setup_blocks_acf_init() {
             ],            
         ),
 
-    );
+    );*/
+
+    foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+        
+        $blocks[ $key ] = array(
+            'name'                  => $value[ 'block' ][ 'name' ],
+            'title'                 => $value[ 'block' ][ 'title' ],
+            'render_template'       => $z->setup_plugin_dir_path().'templates/blocks/setup-blocks.php',
+            'category'              => 'setup',
+            'icon'                  => $value[ 'block' ][ 'icon' ],
+            'mode'                  => 'edit',
+            'keywords'              => $value[ 'block' ][ 'keywords' ],
+            'supports'              => [
+                'align'             => false,
+                'anchor'            => true,
+                'customClassName'   => true,
+                'jsx'               => true,
+            ],            
+        );
+
+    }
 
     // Bail out if function doesn’t exist or no blocks available to register.
     if ( !function_exists( 'acf_register_block_type' ) && !$blocks ) {
