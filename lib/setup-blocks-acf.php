@@ -67,7 +67,7 @@ function setup_blocks_acf_init() {
         $blocks[ $key ] = array(
             'name'                  => $value[ 'block' ][ 'name' ],
             'title'                 => $value[ 'block' ][ 'title' ],
-            'render_template'       => $z->setup_plugin_dir_path().'templates/blocks/setup-blocks.php',
+            'render_template'       => $z->setup_plugin_dir_path().'templates/blocks/'.$value[ 'block' ][ 'template' ],
             'category'              => 'setup',
             'icon'                  => $value[ 'block' ][ 'icon' ],
             'mode'                  => 'edit',
@@ -98,7 +98,8 @@ function setup_blocks_acf_init() {
  * Auto fill Select options | ENTRIES
  *
  */
-add_filter( 'acf/load_field/name=blocks-template', 'acf_setup_blocks_template_choices' ); // SINGLE
+add_filter( 'acf/load_field/name=blocks-template', 'acf_setup_blocks_template_choices' );
+add_filter( 'acf/load_field/name=innerblocker_template', 'acf_setup_blocks_template_choices' );
 function acf_setup_blocks_template_choices( $field ) {
     
     $z = new SetupBlocksVariables();
@@ -125,7 +126,63 @@ function acf_setup_blocks_template_choices( $field ) {
     
 }
 
-add_filter( 'acf/load_field/name=blocks-thumbnail-size', 'acf_setup_blocks_img_sizes' );
+
+/**
+ * Auto fill Checkbox options | Fields to Show
+ *
+ */
+add_filter( 'acf/load_field/name=blocks-show-fields', 'acf_setup_binfo_field_choices' ); // MULTI - ENTRIES
+function acf_setup_binfo_field_choices( $field ) {
+    
+    $z = new SetupBlocksVariables();
+
+    $field['choices'] = array();
+
+    $fielders = $z->setup_block_fields();
+    if( is_array( $fielders ) ) :
+        
+        foreach( $fielders as $key => $value ) {
+            $field['choices'][$key] = $value;
+            //$field['disabled'] = 1;
+        }
+
+        return $field;
+
+    endif;
+    
+}
+
+
+/**
+ * Auto fill Checkbox options | Fields to Show
+ *
+ */
+add_filter('acf/load_field/name=blocks-show-fields', 'acf_setup_binfo_field_default' );
+function acf_setup_binfo_field_default( $field ) {
+
+    $x = new SetupPullVariables();
+    $q = '';
+    foreach ($x->setup_pull_local_default_fields() as $f ) {
+
+        // the next 2 lines below works in adding the fields BUT ACF cannot read them
+//        $q .= trim( $f ).'
+//';
+        
+        $q .= $f;
+    }
+
+    $field['default_value'] = $q;
+
+    return $field;
+
+}
+
+
+/**
+ * Auto fill Select options | IMAGE SIZES
+ *
+ */
+/*add_filter( 'acf/load_field/name=blocks-thumbnail-size', 'acf_setup_blocks_img_sizes' );
 function acf_setup_blocks_img_sizes( $field ) {
 
     $field['choices'] = array();
@@ -136,7 +193,7 @@ function acf_setup_blocks_img_sizes( $field ) {
 
     return $field;
 
-}
+}*/
 
 
 /**

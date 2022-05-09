@@ -14,7 +14,7 @@ class SetupBlocksMain {
         $fields_func = new SetupBlockGen();
 
         global $bars;
-
+        /*
         $bars = array(
             'title'             => get_field( 'blocks-title' ),
             'summary'           => get_field( 'blocks-summary' ),
@@ -26,20 +26,35 @@ class SetupBlocksMain {
         );
 
         echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
+        */
 
-/*        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+            //var_dump( $block );
+            $bars = array();
+            //echo '<h1>'.$key.'</h1>';
+            // validate block class
+            $blk_css = $this->setup_array_validation( 'className', $block );
+            if( !empty( $blk_css ) ) {
+                $bars[ 'block_class' ] = $blk_css;
+            } else {
+                $bars[ 'block_class' ] = '';
+            }
 
-            $bars = '';
+            // loop through the fields
+            foreach( $value[ 'fields' ] as $k => $v ) {
 
-//            $bars = array(
-//                $
-//            );
-            var_dump($value[ 'fields' ]);
-
-            echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
+                if( $k == 'template' ) {
+                    $template = get_field( $v );
+                } else {
+                    $bars[ $k ] = get_field( $v );
+                }
+                
+            }
+            //var_dump( $bars );
+            echo $this->setup_view_template( $template, 'views' );
 
         }
-*/
+
     }
 
 
@@ -60,8 +75,12 @@ class SetupBlocksMain {
 
             $new_output = ob_get_clean();
 
-            if( !empty( $new_output ) )
+            if( !empty( $new_output ) ) {
                 $output = $new_output;
+            } else {
+                $output = FALSE;
+            }
+
 
         } else {
 
@@ -97,21 +116,28 @@ class SetupBlocksMain {
      */
     public function setup_combine_classes( $classes ) {
 
-        $block_class = $classes[ 'block_class' ];
-        $item_class = $classes[ 'item_class' ];
-        $manual_class = $classes[ 'manual_class' ];
+        $block_class = !empty( $classes[ 'block_class' ] ) ? $classes[ 'block_class' ] : '';
+        $item_class = !empty( $classes[ 'item_class' ] ) ? $classes[ 'item_class' ] : '';
+        $manual_class = !empty( $classes[ 'manual_class' ] ) ? $classes[ 'manual_class' ] : '';
 
-        if( !empty( $block_class ) ) {
-            // PULL | SINGLE
-            if( is_numeric( $block_class ) ) {
-                return $manual_class.' '.$item_class;   
-            } else {
-                return $manual_class.' '.$block_class.' '.$item_class;  
+        $return = '';
+        
+        $ar = array( $block_class, $item_class, $manual_class );
+        for( $z=0; $z<=( count( $ar ) - 1 ); $z++ ) {
+
+            if( !empty( $ar[ $z ] ) ) {
+
+                $return .= $ar[ $z ];
+
+                if( $z != ( count( $ar ) - 1 ) ) {
+                    $return .= ' ';
+                }
+
             }
-        } else {
-            // PULL | MULTI
-            return $item_class; 
+
         }
+
+        return $return;
 
     }
 
@@ -125,13 +151,13 @@ class SetupBlocksMain {
         $item_style = $styles[ 'item_style' ];
 
         if( !empty( $manual_style ) && !empty( $item_style ) ) {
-                return ' style="'.$manual_style.' '.$item_style.'"';
+                return $manual_style.' '.$item_style;
         } else {
 
             if( empty( $manual_style ) && !empty( $item_style ) ) {
-                return ' style="'.$item_style.'"';
+                return $item_style;
             } else {
-                return ' style="'.$manual_style.'"';
+                return $manual_style;
             }
 
         }

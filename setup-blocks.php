@@ -24,6 +24,22 @@ class SetupBlocksVariables {
 
     }
 
+    // list of local fields to pull
+    public function setup_block_fields() {
+
+        return array(
+            'title'             => 'Title',
+            'summary'           => 'Summary',
+        );
+
+    }
+
+    // list of local default fields to pull
+    public function setup_block_default_fields() {
+        //return array( 'title', 'content' );
+        return array( 'title' );
+    }
+
 }
 
 // include files
@@ -31,3 +47,13 @@ include_once( 'setup-block-generator.php' );
 include_once( 'lib/setup-blocks-acf.php' );
 include_once( 'lib/setup-blocks-functions.php' );
 
+/*
+	INFO (tab)
+	info-title (instead of block-title)
+	info-summary (...)
+
+	LAYOUT (tab)
+	layout-template
+	layout-class
+	layout-inline
+*/
