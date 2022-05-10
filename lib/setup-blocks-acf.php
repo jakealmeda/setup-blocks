@@ -162,7 +162,7 @@ function acf_setup_binfo_field_default( $field ) {
 
     $x = new SetupBlocksVariables();
     $q = '';
-    foreach ($x->setup_pull_local_default_fields() as $f ) {
+    foreach ($x->setup_block_default_fields() as $f ) {
 
         // the next 2 lines below works in adding the fields BUT ACF cannot read them
 //        $q .= trim( $f ).'
