@@ -160,7 +160,7 @@ function acf_setup_binfo_field_choices( $field ) {
 add_filter('acf/load_field/name=blocks-show-fields', 'acf_setup_binfo_field_default' );
 function acf_setup_binfo_field_default( $field ) {
 
-    $x = new SetupPullVariables();
+    $x = new SetupBlocksVariables();
     $q = '';
     foreach ($x->setup_pull_local_default_fields() as $f ) {
 
