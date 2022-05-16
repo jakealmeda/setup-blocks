@@ -27,11 +27,11 @@ class SetupBlocksMain {
 
         echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
         */
-
+        
         foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
-            //var_dump( $block );
+            
             $bars = array();
-            //echo '<h1>'.$key.'</h1>';
+            
             // validate block class
             $blk_css = $this->setup_array_validation( 'className', $block );
             if( !empty( $blk_css ) ) {
@@ -40,18 +40,24 @@ class SetupBlocksMain {
                 $bars[ 'block_class' ] = '';
             }
 
-            // loop through the fields
-            foreach( $value[ 'fields' ] as $k => $v ) {
+            // FILTER THE BLOCK
+            if( $block[ "title" ] == $value[ 'block' ][ 'title' ] ):
 
-                if( $k == 'template' ) {
-                    $template = get_field( $v );
-                } else {
-                    $bars[ $k ] = get_field( $v );
+                // loop through the fields
+                foreach( $value[ 'fields' ] as $k => $v ) {
+                    
+                    if( $k == 'template' ) {
+                        $template = get_field( $v );
+                    } else {
+                        $bars[ $k ] = get_field( $v );
+                    }
+                    
                 }
                 
-            }
-            //var_dump( $bars );
-            echo $this->setup_view_template( $template, 'views' );
+                // output
+                echo $this->setup_view_template( $template, 'views' );
+
+            endif;
 
         }
 

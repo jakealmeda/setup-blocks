@@ -21,12 +21,17 @@ $ss = array(
 $stayls = $mfunc->setup_combine_styles( $ss );
 $inline_style = !empty( $stayls ) ? ' style="'.$stayls.'"' : '';
 
+// info | title, summary
 $bsf = $mfunc->setup_array_validation( "blocks-show-fields", $bars );
 $bhf = $mfunc->setup_array_validation( "blocks-hide-all-fields", $bars );
 
-if( $bhf === FALSE ) :
+// media | image, video
+$bsf_m = $mfunc->setup_array_validation( "blocks-show-fields-media", $bars );
+$bhf_m = $mfunc->setup_array_validation( "blocks-hide-all-fields-media", $bars );
 
-if( is_array( $bsf ) && count( $bsf ) >= 1 ) :
+if( $bhf === FALSE || $bhf_m === FALSE ) :
+
+if( is_array( $bsf ) && count( $bsf ) >= 1 || is_array( $bsf_m ) && count( $bsf_m ) >= 1 ) :
 
 /**
  * CONTENT | START
@@ -37,13 +42,13 @@ echo '<div'.$classes.$inline_style.'>';
 	
 	// TITLE
 	$block_title = $mfunc->setup_array_validation( "title", $bars );
-	if( !empty( $block_title ) && in_array( 'title', $bsf ) ) {
+	if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf === FALSE ) {
 		echo '<h1 class="item-title">'.$block_title.'</h1>';
 	}
 	
 	// SUMMARY
 	$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-	if( !empty( $block_summary ) && in_array( 'summary', $bsf ) ) {
+	if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf === FALSE ) {
 		echo '<div class="item-summary">'.$block_summary.'</div>';
 	}
 

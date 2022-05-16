@@ -34,10 +34,26 @@ class SetupBlocksVariables {
 
     }
 
-    // list of local default fields to pull
+    // list of local default fields
     public function setup_block_default_fields() {
         //return array( 'title', 'content' );
         return array( 'title' );
+    }
+
+    // list of media fields to pull
+    public function setup_block_fields_media() {
+
+        return array(
+            'image'             => 'Image',
+            'video'             => 'Video',
+        );
+
+    }
+
+    // list of media default fields
+    public function setup_block_default_fields_media() {
+        //return array( 'title', 'content' );
+        return array( 'image' );
     }
 
 }

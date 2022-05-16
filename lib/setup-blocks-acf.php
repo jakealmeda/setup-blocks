@@ -154,7 +154,7 @@ function acf_setup_binfo_field_choices( $field ) {
 
 
 /**
- * Auto fill Checkbox options | Fields to Show
+ * Auto select Checkbox options | Fields to Show
  *
  */
 add_filter('acf/load_field/name=blocks-show-fields', 'acf_setup_binfo_field_default' );
@@ -179,10 +179,57 @@ function acf_setup_binfo_field_default( $field ) {
 
 
 /**
+ * Auto fill Checkbox options | Media Fields to Show
+ *
+ */
+add_filter( 'acf/load_field/name=blocks-show-fields-media', 'acf_setup_binfo_media_field_choices' ); // MULTI - ENTRIES
+function acf_setup_binfo_media_field_choices( $field ) {
+    
+    $z = new SetupBlocksVariables();
+
+    $field['choices'] = array();
+
+    $fielders = $z->setup_block_fields_media();
+    if( is_array( $fielders ) ) :
+        
+        foreach( $fielders as $key => $value ) {
+            $field['choices'][$key] = $value;
+            //$field['disabled'] = 1;
+        }
+
+        return $field;
+
+    endif;
+    
+}
+
+
+/**
+ * Auto select Checkbox options | Media Fields to Show
+ *
+ */
+add_filter('acf/load_field/name=blocks-show-fields-media', 'acf_setup_binfo_media_field_default' );
+function acf_setup_binfo_media_field_default( $field ) {
+
+    $x = new SetupBlocksVariables();
+    $q = '';
+    foreach ($x->setup_block_default_fields_media() as $f ) {
+        
+        $q .= $f;
+    }
+
+    $field['default_value'] = $q;
+
+    return $field;
+
+}
+
+
+/**
  * Auto fill Select options | IMAGE SIZES
  *
  */
-/*add_filter( 'acf/load_field/name=blocks-thumbnail-size', 'acf_setup_blocks_img_sizes' );
+add_filter( 'acf/load_field/name=block-image-size', 'acf_setup_blocks_img_sizes' );
 function acf_setup_blocks_img_sizes( $field ) {
 
     $field['choices'] = array();
@@ -193,7 +240,7 @@ function acf_setup_blocks_img_sizes( $field ) {
 
     return $field;
 
-}*/
+}
 
 
 /**
