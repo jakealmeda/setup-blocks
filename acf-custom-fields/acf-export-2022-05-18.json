@@ -289,7 +289,7 @@
                 "key": "field_6282437255d76",
                 "label": "Hide all fields",
                 "name": "blocks-hide-all-fields",
-                "type": "true_false",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -298,11 +298,16 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
+                "choices": {
+                    "fields": "Fields only",
+                    "container": "Fields & Container"
+                },
+                "allow_null": 1,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6282437255db3",
@@ -419,7 +424,7 @@
                 "key": "field_62824f82ba696",
                 "label": "Hide all fields",
                 "name": "blocks-hide-all-fields-media",
-                "type": "true_false",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -428,11 +433,16 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "",
-                "default_value": 0,
-                "ui": 0,
-                "ui_on_text": "",
-                "ui_off_text": ""
+                "choices": {
+                    "fields": "Fields only",
+                    "container": "Fields & Container"
+                },
+                "allow_null": 1,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6282437255e8e",

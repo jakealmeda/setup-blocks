@@ -31,8 +31,6 @@ $bhf_m = $mfunc->setup_array_validation( "blocks-hide-all-fields-media", $bars )
 
 if( $bhf === FALSE || $bhf_m === FALSE ) :
 
-if( is_array( $bsf ) && count( $bsf ) >= 1 || is_array( $bsf_m ) && count( $bsf_m ) >= 1 ) :
-
 /**
  * CONTENT | START
  */
@@ -40,40 +38,51 @@ if( is_array( $bsf ) && count( $bsf ) >= 1 || is_array( $bsf_m ) && count( $bsf_
 // WRAP | OPEN
 echo '<div'.$classes.$inline_style.'>';
 
-	// TITLE
-	$block_title = $mfunc->setup_array_validation( "title", $bars );
-	if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf === FALSE ) {
-		echo '<h4 class="item-title">'.$block_title.'</h4>';
-	}
+	// INFO
+	if( $bhf != 'container' ) :
+	?><div class="items-info"><?php
 
-	// SUMMARY
-	$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-	if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf === FALSE ) {
-		echo '<div class="item-summary">'.$block_summary.'</div>';
-	}
+		// TITLE
+		$block_title = $mfunc->setup_array_validation( "title", $bars );
+		if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf != 'fields' ) {
+			echo '<h4 class="item-title">'.$block_title.'</h4>';
+		}
 
-	// IMAGE
-	$block_img = $mfunc->setup_array_validation( "image", $bars );
-	if( !empty( $block_img ) && in_array( 'image', $bsf_m ) && $bhf_m === FALSE ) {
-		$img = wp_get_attachment_image_src( $block_img, $mfunc->setup_array_validation( "image_size", $bars ) ? $bars[ "image_size" ] : 'full' );
+		// SUMMARY
+		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
+		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf != 'fields' ) {
+			echo '<div class="item-summary">'.$block_summary.'</div>';
+		}
 
-		echo '<div class="item-image">';
-			echo '<img src="'.$img[ 0 ].'" border="0" />';
-		echo '</div>';
-	}
+	?></div><?php
+	endif;
 
-	// VIDEO
-	$video = $mfunc->setup_array_validation( 'video', $bars );
-	if( !empty( $video ) && in_array( 'video', $bsf_m ) && $bhf_m === FALSE ) {
-		echo '<div class="item-oembed">'.$video.'</div>';
-	}
+	// MEDIA
+	if( $bhf_m != 'container' ) :
+	?><div class="items-infomedia"><?php
+
+		// IMAGE
+		$block_img = $mfunc->setup_array_validation( "image", $bars );
+		if( !empty( $block_img ) && in_array( 'image', $bsf_m ) && $bhf_m != 'fields' ) {
+			$img = wp_get_attachment_image_src( $block_img, $mfunc->setup_array_validation( "image_size", $bars ) ? $bars[ "image_size" ] : 'full' );
+
+			echo '<div class="item-image">';
+				echo '<img src="'.$img[ 0 ].'" border="0" />';
+			echo '</div>';
+		}
+
+		// VIDEO
+		$video = $mfunc->setup_array_validation( 'video', $bars );
+		if( !empty( $video ) && in_array( 'video', $bsf_m ) && $bhf_m != 'fields' ) {
+			echo '<div class="item-oembed">'.$video.'</div>';
+		}
+
+	?></div><?php
+	endif;
 
 	?><InnerBlocks /><?php
-
+	
 // WRAP | CLOSE
 echo '</div>';
-
-
-endif;
 
 endif;

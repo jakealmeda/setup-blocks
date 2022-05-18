@@ -31,8 +31,6 @@ $bhf_m = $mfunc->setup_array_validation( "blocks-hide-all-fields-media", $bars )
 
 if( $bhf === FALSE || $bhf_m === FALSE ) :
 
-if( is_array( $bsf ) && count( $bsf ) >= 1 || is_array( $bsf_m ) && count( $bsf_m ) >= 1 ) :
-
 /**
  * CONTENT | START
  */
@@ -40,24 +38,29 @@ if( is_array( $bsf ) && count( $bsf ) >= 1 || is_array( $bsf_m ) && count( $bsf_
 // WRAP | OPEN
 echo '<div'.$classes.$inline_style.'>';
 
-	// TITLE
-	$block_title = $mfunc->setup_array_validation( "title", $bars );
-	if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf === FALSE ) {
-		echo '<div class="item-title"><strong>'.$block_title.'</strong></div>';
-	}
+	// INFO
+	if( $bhf != 'container' ) :
+	?><div class="items-info"><?php
+	
+		// TITLE
+		$block_title = $mfunc->setup_array_validation( "title", $bars );
+		if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf != 'fields' ) {
+			echo '<div class="item-title"><strong>'.$block_title.'</strong></div>';
+		}
 
-	// SUMMARY
-	$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-	if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf === FALSE ) {
-		echo '<div class="item-summary">'.$block_summary.'</div>';
-	}
+		// SUMMARY
+		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
+		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf != 'fields' ) {
+			echo '<div class="item-summary">'.$block_summary.'</div>';
+		}
+
+	?></div><?php
+	endif;
 
 	?><InnerBlocks /><?php
 
 // WRAP | CLOSE
 echo '</div>';
 
-
-endif;
 
 endif;
