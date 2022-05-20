@@ -289,7 +289,7 @@
                 "key": "field_6282437255d76",
                 "label": "Hide all fields",
                 "name": "blocks-hide-all-fields",
-                "type": "radio",
+                "type": "true_false",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -298,16 +298,11 @@
                     "class": "",
                     "id": ""
                 },
-                "choices": {
-                    "fields": "Fields only",
-                    "container": "Fields & Container"
-                },
-                "allow_null": 1,
-                "other_choice": 0,
-                "default_value": "",
-                "layout": "horizontal",
-                "return_format": "value",
-                "save_other_choice": 0
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             },
             {
                 "key": "field_6282437255db3",
@@ -422,9 +417,9 @@
             },
             {
                 "key": "field_62824f82ba696",
-                "label": "Hide all fields",
+                "label": "Hide all Media",
                 "name": "blocks-hide-all-fields-media",
-                "type": "radio",
+                "type": "true_false",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -433,16 +428,11 @@
                     "class": "",
                     "id": ""
                 },
-                "choices": {
-                    "fields": "Fields only",
-                    "container": "Fields & Container"
-                },
-                "allow_null": 1,
-                "other_choice": 0,
-                "default_value": "",
-                "layout": "horizontal",
-                "return_format": "value",
-                "save_other_choice": 0
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             },
             {
                 "key": "field_6282437255e8e",

@@ -39,18 +39,18 @@ if( $bhf === FALSE || $bhf_m === FALSE ) :
 echo '<div'.$classes.$inline_style.'>';
 
 	// INFO
-	if( $bhf != 'container' ) :
+	if( $bhf === FALSE ) :
 	?><div class="items-info"><?php
 
 		// TITLE
 		$block_title = $mfunc->setup_array_validation( "title", $bars );
-		if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf != 'fields' ) {
+		if( !empty( $block_title ) && is_array( $bsf ) && in_array( 'title', $bsf ) ) {
 			echo '<h4 class="item-title">'.$block_title.'</h4>';
 		}
 
 		// SUMMARY
 		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf != 'fields' ) {
+		if( !empty( $block_summary ) && is_array( $bsf ) && in_array( 'summary', $bsf ) ) {
 			echo '<div class="item-summary">'.$block_summary.'</div>';
 		}
 
@@ -58,12 +58,12 @@ echo '<div'.$classes.$inline_style.'>';
 	endif;
 
 	// MEDIA
-	if( $bhf_m != 'container' ) :
+	if( $bhf_m === FALSE ) :
 	?><div class="items-infomedia"><?php
 
 		// IMAGE
 		$block_img = $mfunc->setup_array_validation( "image", $bars );
-		if( !empty( $block_img ) && in_array( 'image', $bsf_m ) && $bhf_m != 'fields' ) {
+		if( !empty( $block_img ) && is_array( $bsf_m ) && in_array( 'image', $bsf_m ) ) {
 			$img = wp_get_attachment_image_src( $block_img, $mfunc->setup_array_validation( "image_size", $bars ) ? $bars[ "image_size" ] : 'full' );
 
 			echo '<div class="item-image">';
@@ -73,7 +73,7 @@ echo '<div'.$classes.$inline_style.'>';
 
 		// VIDEO
 		$video = $mfunc->setup_array_validation( 'video', $bars );
-		if( !empty( $video ) && in_array( 'video', $bsf_m ) && $bhf_m != 'fields' ) {
+		if( !empty( $video ) && is_array( $bsf_m ) && in_array( 'video', $bsf_m ) ) {
 			echo '<div class="item-oembed">'.$video.'</div>';
 		}
 

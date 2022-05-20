@@ -39,18 +39,18 @@ if( $bhf === FALSE || $bhf_m === FALSE ) :
 echo '<div'.$classes.$inline_style.'>';
 
 	// INFO
-	if( $bhf != 'container' ) :
+	if( $bhf === FALSE ) :
 	?><div class="items-info"><?php
 	
 		// TITLE
 		$block_title = $mfunc->setup_array_validation( "title", $bars );
-		if( !empty( $block_title ) && in_array( 'title', $bsf ) && $bhf != 'fields' ) {
+		if( !empty( $block_title ) && in_array( 'title', $bsf ) ) {
 			echo '<div class="item-title"><strong>'.$block_title.'</strong></div>';
 		}
 
 		// SUMMARY
 		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) && $bhf != 'fields' ) {
+		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) ) {
 			echo '<div class="item-summary">'.$block_summary.'</div>';
 		}
 
