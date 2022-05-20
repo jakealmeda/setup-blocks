@@ -56,20 +56,22 @@ class SetupBlocksVariables {
         return array( 'image' );
     }
 
+    // enqueue
+    public function setup_block_enqueue_scripts() {
+
+        // enqueue styles
+        wp_enqueue_style( 'setupblocksstyle', plugin_dir_url( __FILE__ ).'css/style.css' );
+
+    }
+
+    // Construct
+    public function __construct() {
+        add_action( 'wp_enqueue_scripts', array( $this, 'setup_block_enqueue_scripts' ), 2000 );
+    }
+
 }
 
 // include files
 include_once( 'setup-block-generator.php' );
 include_once( 'lib/setup-blocks-acf.php' );
 include_once( 'lib/setup-blocks-functions.php' );
-
-/*
-	INFO (tab)
-	info-title (instead of block-title)
-	info-summary (...)
-
-	LAYOUT (tab)
-	layout-template
-	layout-class
-	layout-inline
-*/
