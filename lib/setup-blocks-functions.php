@@ -15,13 +15,12 @@ class SetupBlocksMain {
 
         global $bars;
 
+        // FILTER THE BLOCK
         $bname = explode( '/', $block[ 'name' ] );
         $arr_structure = $fields_func->setup_block_gen_details();
         $value = $arr_structure[ $bname[ 1 ] ];
         if( is_array( $value ) ) {
-//        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
-            //var_dump( $value );
-//            echo '<hr />';
+
             $bars = array();
             
             // validate block class
@@ -32,24 +31,19 @@ class SetupBlocksMain {
                 $bars[ 'block_class' ] = '';
             }
 
-            // FILTER THE BLOCK
-//            if( $block[ "title" ] == $value[ 'block' ][ 'title' ] ):
-
-                // loop through the fields
-                foreach( $value[ 'fields' ] as $k => $v ) {
-                    
-                    if( $k == 'template' ) {
-                        $template = get_field( $v );
-                    } else {
-                        $bars[ $k ] = get_field( $v );
-                    }
-                    
+            // loop through the fields
+            foreach( $value[ 'fields' ] as $k => $v ) {
+                
+                if( $k == 'template' ) {
+                    $template = get_field( $v );
+                } else {
+                    $bars[ $k ] = get_field( $v );
                 }
                 
-                // output
-                echo $this->setup_view_template( $template, 'views' );
-
-//            endif;
+            }
+            
+            // output
+            echo $this->setup_view_template( $template, 'views' );
 
         }
 

@@ -73,6 +73,6 @@ class SetupBlocksVariables {
 }
 
 // include files
-include_once( 'setup-block-generator.php' );
+include_once( 'lib/setup-block-generator.php' );
 include_once( 'lib/setup-blocks-acf.php' );
 include_once( 'lib/setup-blocks-functions.php' );
