@@ -14,22 +14,14 @@ class SetupBlocksMain {
         $fields_func = new SetupBlockGen();
 
         global $bars;
-        /*
-        $bars = array(
-            'title'             => get_field( 'blocks-title' ),
-            'summary'           => get_field( 'blocks-summary' ),
-            'thumbnail'         => get_field( 'blocks-thumbnail' ),
-            'thumbnai_size'     => get_field( 'blocks-thumbnail-size' ),
-            'wrap_sel'          => get_field( 'blocks-section-class' ),
-            'wrap_sty'          => get_field( 'blocks-section-style' ),
-            'block_class'       => $this->setup_array_validation( 'className', $block ),
-        );
 
-        echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
-        */
-        
-        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
-            
+        $bname = explode( '/', $block[ 'name' ] );
+        $arr_structure = $fields_func->setup_block_gen_details();
+        $value = $arr_structure[ $bname[ 1 ] ];
+        if( is_array( $value ) ) {
+//        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+            //var_dump( $value );
+//            echo '<hr />';
             $bars = array();
             
             // validate block class
@@ -41,7 +33,7 @@ class SetupBlocksMain {
             }
 
             // FILTER THE BLOCK
-            if( $block[ "title" ] == $value[ 'block' ][ 'title' ] ):
+//            if( $block[ "title" ] == $value[ 'block' ][ 'title' ] ):
 
                 // loop through the fields
                 foreach( $value[ 'fields' ] as $k => $v ) {
@@ -57,7 +49,7 @@ class SetupBlocksMain {
                 // output
                 echo $this->setup_view_template( $template, 'views' );
 
-            endif;
+//            endif;
 
         }
 

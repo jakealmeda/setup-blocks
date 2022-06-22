@@ -80,7 +80,13 @@ echo '<div'.$classes.$inline_style.'>';
 	?></div><?php
 	endif;
 
-	?><InnerBlocks /><?php
+	if( $bhf === FALSE ) :
+		//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
+		//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+		if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+			echo '<div class="item-iblock"><InnerBlocks /></div>';
+		}
+	endif;
 	
 // WRAP | CLOSE
 echo '</div>';
