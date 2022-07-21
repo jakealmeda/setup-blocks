@@ -6,7 +6,7 @@ $mfunc = new SetupBlocksMain();
 
 // class
 $cs = array(
-	'manual_class'		=> 'item-blocks infomedia-nostyle',
+	'manual_class'		=> 'infomedia',
 	'item_class' 		=> $mfunc->setup_array_validation( 'wrap_sel', $bars ),
 	'block_class'		=> $mfunc->setup_array_validation( 'block_class', $bars ),
 );
@@ -54,6 +54,15 @@ echo '<div'.$classes.$inline_style.'>';
 			echo '<div class="item-summary">'.$block_summary.'</div>';
 		}
 
+		// INNERBLOCKS
+		if( $bhf === FALSE ) :
+			//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
+			//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+			if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+				echo '<div class="item-iblock"><InnerBlocks /></div>';
+			}
+		endif;
+
 	?></div><?php
 	endif;
 
@@ -80,14 +89,6 @@ echo '<div'.$classes.$inline_style.'>';
 	?></div><?php
 	endif;
 
-	if( $bhf === FALSE ) :
-		//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
-		//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-		if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-			echo '<div class="item-iblock"><InnerBlocks /></div>';
-		}
-	endif;
-	
 // WRAP | CLOSE
 echo '</div>';
 

@@ -6,7 +6,7 @@ $mfunc = new SetupBlocksMain();
 
 // class
 $cs = array(
-	'manual_class'		=> 'item-blocks',
+	'manual_class'		=> 'infobg',
 	'item_class' 		=> $mfunc->setup_array_validation( 'wrap_sel', $bars ),
 	'block_class'		=> $mfunc->setup_array_validation( 'block_class', $bars ),
 );
@@ -38,35 +38,41 @@ if( $bhf === FALSE || $bhf_m === FALSE ) :
 // WRAP | OPEN
 echo '<div'.$classes.$inline_style.'>';
 
+	// BG (open)
+	echo '<div style="background-image: url('URL GOES HERE')">';
+
 	// INFO
 	if( $bhf === FALSE ) :
 	?><div class="items-info"><?php
-	
+
 		// TITLE
 		$block_title = $mfunc->setup_array_validation( "title", $bars );
-		if( !empty( $block_title ) && in_array( 'title', $bsf ) ) {
-			echo '<div class="item-title"><strong>'.$block_title.'</strong></div>';
+		if( !empty( $block_title ) && is_array( $bsf ) && in_array( 'title', $bsf ) ) {
+			echo '<div class="item-title">'.$block_title.'</div>';
 		}
 
 		// SUMMARY
 		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
-		if( !empty( $block_summary ) && in_array( 'summary', $bsf ) ) {
+		if( !empty( $block_summary ) && is_array( $bsf ) && in_array( 'summary', $bsf ) ) {
 			echo '<div class="item-summary">'.$block_summary.'</div>';
 		}
+
+		// INNERBLOCKS
+		if( $bhf === FALSE ) :
+			//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
+			//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+			if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+				echo '<div class="item-iblock"><InnerBlocks /></div>';
+			}
+		endif;
 
 	?></div><?php
 	endif;
 
-	if( $bhf === FALSE ) :
-		//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
-		//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-		if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-			echo '<div class="item-iblock"><InnerBlocks /></div>';
-		}
-	endif;
+	// BG (close)
+	echo '</div>';
 
 // WRAP | CLOSE
 echo '</div>';
-
 
 endif;

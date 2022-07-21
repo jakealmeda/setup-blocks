@@ -6,7 +6,7 @@ $mfunc = new SetupBlocksMain();
 
 // class
 $cs = array(
-	'manual_class'		=> 'item-blocks info-nostyle',
+	'manual_class'		=> 'mediainfo',
 	'item_class' 		=> $mfunc->setup_array_validation( 'wrap_sel', $bars ),
 	'block_class'		=> $mfunc->setup_array_validation( 'block_class', $bars ),
 );
@@ -36,11 +36,34 @@ if( $bhf === FALSE || $bhf_m === FALSE ) :
  */
 
 // WRAP | OPEN
-echo '<div class="'.$classes.'"'.$inline_style.'>';
+echo '<div'.$classes.$inline_style.'>';
+
+	// MEDIA
+	if( $bhf_m === FALSE ) :
+	?><div class="items-media"><?php
+
+		// IMAGE
+		$block_img = $mfunc->setup_array_validation( "image", $bars );
+		if( !empty( $block_img ) && is_array( $bsf_m ) && in_array( 'image', $bsf_m ) ) {
+			$img = wp_get_attachment_image_src( $block_img, $mfunc->setup_array_validation( "image_size", $bars ) ? $bars[ "image_size" ] : 'full' );
+
+			echo '<div class="item-image">';
+				echo '<img src="'.$img[ 0 ].'" border="0" />';
+			echo '</div>';
+		}
+
+		// VIDEO
+		$video = $mfunc->setup_array_validation( 'video', $bars );
+		if( !empty( $video ) && is_array( $bsf_m ) && in_array( 'video', $bsf_m ) ) {
+			echo '<div class="item-oembed">'.$video.'</div>';
+		}
+
+	?></div><?php
+	endif;
 
 	// INFO
 	if( $bhf === FALSE ) :
-	echo '<div class="items-info">';
+	?><div class="items-info"><?php
 
 		// TITLE
 		$block_title = $mfunc->setup_array_validation( "title", $bars );
@@ -54,17 +77,18 @@ echo '<div class="'.$classes.'"'.$inline_style.'>';
 			echo '<div class="item-summary">'.$block_summary.'</div>';
 		}
 
-	echo '</div>';
+		// INNERBLOCKS
+		if( $bhf === FALSE ) :
+			//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
+			//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+			if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
+				echo '<div class="item-iblock"><InnerBlocks /></div>';
+			}
+		endif;
+
+	?></div><?php
 	endif;
 	
-	if( $bhf === FALSE ) :
-		//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
-		//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-		if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
-			echo '<div class="item-iblock"><InnerBlocks /></div>';
-		}
-	endif;
-
 // WRAP | CLOSE
 echo '</div>';
 
