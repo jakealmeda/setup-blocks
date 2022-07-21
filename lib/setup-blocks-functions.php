@@ -20,7 +20,7 @@ class SetupBlocksMain {
         $arr_structure = $fields_func->setup_block_gen_details();
         $value = $arr_structure[ $bname[ 1 ] ];
         if( is_array( $value ) ) {
-
+            
             $bars = array();
             
             // validate block class

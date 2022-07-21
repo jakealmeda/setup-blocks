@@ -37,9 +37,18 @@ if( $bhf === FALSE || $bhf_m === FALSE ) :
 
 // WRAP | OPEN
 echo '<div'.$classes.$inline_style.'>';
-
+	
 	// BG (open)
-	echo '<div style="background-image: url('URL GOES HERE')">';
+	if( $bhf_m === FALSE ) :
+
+		$block_img = $mfunc->setup_array_validation( "image", $bars );
+		if( !empty( $block_img ) && is_array( $bsf_m ) && in_array( 'image', $bsf_m ) ) {
+			$img = wp_get_attachment_image_src( $block_img, $mfunc->setup_array_validation( "image_size", $bars ) ? $bars[ "image_size" ] : 'full' );
+
+			echo '<div style="background-image: url('.$img[ 0 ].')">';
+		}
+
+	endif;
 
 	// INFO
 	if( $bhf === FALSE ) :
@@ -59,8 +68,6 @@ echo '<div'.$classes.$inline_style.'>';
 
 		// INNERBLOCKS
 		if( $bhf === FALSE ) :
-			//	$iblocks = $mfunc->setup_array_validation( "innerblocks", $bars );
-			//	if( !empty( $iblocks ) && is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
 			if( is_array( $bsf ) && in_array( 'innerblocks', $bsf ) ) {
 				echo '<div class="item-iblock"><InnerBlocks /></div>';
 			}
@@ -70,7 +77,13 @@ echo '<div'.$classes.$inline_style.'>';
 	endif;
 
 	// BG (close)
-	echo '</div>';
+	if( $bhf_m === FALSE ) :
+
+		if( !empty( $block_img ) && is_array( $bsf_m ) && in_array( 'image', $bsf_m ) ) {
+			echo '</div>';
+		}
+
+	endif;
 
 // WRAP | CLOSE
 echo '</div>';
