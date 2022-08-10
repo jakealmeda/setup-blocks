@@ -30,6 +30,7 @@ class SetupBlocksVariables {
         return array(
             'title'             => 'Title',
             'summary'           => 'Summary',
+            'innerblocks'       => 'InnerBlocks'
         );
 
     }

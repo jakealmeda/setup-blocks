@@ -14,21 +14,12 @@ class SetupBlocksMain {
         $fields_func = new SetupBlockGen();
 
         global $bars;
-        /*
-        $bars = array(
-            'title'             => get_field( 'blocks-title' ),
-            'summary'           => get_field( 'blocks-summary' ),
-            'thumbnail'         => get_field( 'blocks-thumbnail' ),
-            'thumbnai_size'     => get_field( 'blocks-thumbnail-size' ),
-            'wrap_sel'          => get_field( 'blocks-section-class' ),
-            'wrap_sty'          => get_field( 'blocks-section-style' ),
-            'block_class'       => $this->setup_array_validation( 'className', $block ),
-        );
 
-        echo $this->setup_view_template( get_field( 'blocks-template' ), 'views' );
-        */
-        
-        foreach( $fields_func->setup_block_gen_details() as $key => $value ) {
+        // FILTER THE BLOCK
+        $bname = explode( '/', $block[ 'name' ] );
+        $arr_structure = $fields_func->setup_block_gen_details();
+        $value = $arr_structure[ $bname[ 1 ] ];
+        if( is_array( $value ) ) {
             
             $bars = array();
             
@@ -40,24 +31,19 @@ class SetupBlocksMain {
                 $bars[ 'block_class' ] = '';
             }
 
-            // FILTER THE BLOCK
-            if( $block[ "title" ] == $value[ 'block' ][ 'title' ] ):
-
-                // loop through the fields
-                foreach( $value[ 'fields' ] as $k => $v ) {
-                    
-                    if( $k == 'template' ) {
-                        $template = get_field( $v );
-                    } else {
-                        $bars[ $k ] = get_field( $v );
-                    }
-                    
+            // loop through the fields
+            foreach( $value[ 'fields' ] as $k => $v ) {
+                
+                if( $k == 'template' ) {
+                    $template = get_field( $v );
+                } else {
+                    $bars[ $k ] = get_field( $v );
                 }
                 
-                // output
-                echo $this->setup_view_template( $template, 'views' );
-
-            endif;
+            }
+            
+            // output
+            echo $this->setup_view_template( $template, 'views' );
 
         }
 

@@ -15,7 +15,7 @@ class SetupBlockGen {
         // ################################
 
             // COPY FROM THE LINE BELOW ----------------------
-            'info_block' => array(
+            'info-block' => array(
                 
                 'block' => array(
                     'name'                              => 'info_block',
@@ -39,7 +39,7 @@ class SetupBlockGen {
             ),
             // COPY UNTIL THE LINE ABOVE ---------------------
 
-            'info_block_media' => array(
+            'info-block-media' => array(
                 
                 'block' => array(
                     'name'                              => 'info_block_media',
