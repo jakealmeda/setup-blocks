@@ -48,6 +48,17 @@ echo '<div'.$classes.$inline_style.'>';
 			echo '<div class="item-title">'.$block_title.'</div>';
 		}
 
+		// CALL TO ACTION
+		$block_cta = $mfunc->setup_array_validation( "cta", $bars );
+		if( !empty( $block_title ) && is_array( $bsf ) && in_array( 'cta', $bsf ) ) {
+
+			// array(3) { [“title”]=> string(6) “Google” [“url”]=> string(23) “https://www.google.com/” [“target”]=> string(6) “_blank” }
+			$targ = !empty( $block_cta[ 'target' ] ) ? ' target="_blank"' : '';
+
+			echo '<div class="item-cta"><a href="'.$block_cta[ "url" ].'"'.$targ.'>'.$block_cta[ "title" ].'</a></div>';
+			
+		}
+
 		// SUMMARY
 		$block_summary = $mfunc->setup_array_validation( "summary", $bars );
 		if( !empty( $block_summary ) && is_array( $bsf ) && in_array( 'summary', $bsf ) ) {
@@ -84,6 +95,12 @@ echo '<div'.$classes.$inline_style.'>';
 		$video = $mfunc->setup_array_validation( 'video', $bars );
 		if( !empty( $video ) && is_array( $bsf_m ) && in_array( 'video', $bsf_m ) ) {
 			echo '<div class="item-oembed">'.$video.'</div>';
+		}
+
+		// SVG | HTML
+		$svg = $mfunc->setup_array_validation( 'svg', $bars );
+		if( !empty( $svg ) && is_array( $bsf_m ) && in_array( 'svg', $bsf_m ) ) {
+			echo '<div class="item-html">'.$svg.'</div>';
 		}
 
 	?></div><?php

@@ -28,6 +28,7 @@ class SetupBlockGen {
                 'fields' => array(
                     // change the following to you exact fields
                     'title'                             => 'blocks-title',
+                    'cta'                               => 'blocks-cta',
                     'summary'                           => 'blocks-summary',
                     'blocks-show-fields'                => 'blocks-show-fields',
                     'blocks-hide-all-fields'            => 'blocks-hide-all-fields',
@@ -52,12 +53,14 @@ class SetupBlockGen {
                 'fields' => array(
                     // change the following to you exact fields
                     'title'                             => 'blocks-title',
+                    'cta'                               => 'blocks-cta',
                     'summary'                           => 'blocks-summary',
                     'blocks-show-fields'                => 'blocks-show-fields',
                     'blocks-hide-all-fields'            => 'blocks-hide-all-fields',
                     'image'                             => 'blocks-image',
                     'image_size'                        => 'blocks-image-size',
                     'video'                             => 'blocks-video',
+                    'svg'                               => 'blocks-html',
                     'blocks-show-fields-media'          => 'blocks-show-fields-media',
                     'blocks-hide-all-fields-media'      => 'blocks-hide-all-fields-media',
                     'wrap_sel'                          => 'blocks-section-class',

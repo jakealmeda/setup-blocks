@@ -29,6 +29,7 @@ class SetupBlocksVariables {
 
         return array(
             'title'             => 'Title',
+            'cta'               => 'Call to Action',
             'summary'           => 'Summary',
             'innerblocks'       => 'InnerBlocks'
         );
@@ -47,6 +48,7 @@ class SetupBlocksVariables {
         return array(
             'image'             => 'Image',
             'video'             => 'Video',
+            'svg'               => 'HTML',
         );
 
     }
