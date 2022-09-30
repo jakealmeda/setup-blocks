@@ -1,4 +1,3 @@
-
 [
     {
         "key": "group_625a9cefab076",
@@ -40,6 +39,21 @@
                 "maxlength": ""
             },
             {
+                "key": "field_62f31e51462bf",
+                "label": "Call to Action",
+                "name": "blocks-cta",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
+            },
+            {
                 "key": "field_625a9d0775e0d",
                 "label": "Summary",
                 "name": "blocks-summary",
@@ -73,7 +87,9 @@
                 },
                 "choices": {
                     "title": "Title",
-                    "summary": "Summary"
+                    "cta": "Call to Action",
+                    "summary": "Summary",
+                    "innerblocks": "InnerBlocks"
                 },
                 "allow_custom": 0,
                 "default_value": "title",
@@ -131,11 +147,11 @@
                     "id": ""
                 },
                 "choices": {
-                    "demo-info.php": "demo-info",
-                    "demo-infobox.php": "demo-infobox",
-                    "h1-title.php": "h1-title",
-                    "media.php": "media",
-                    "orange.php": "orange"
+                    "default.php": "default",
+                    "infobg.php": "infobg",
+                    "infoblock.php": "infoblock",
+                    "infomedia.php": "infomedia",
+                    "mediainfo.php": "mediainfo"
                 },
                 "default_value": false,
                 "allow_null": 0,
@@ -243,6 +259,21 @@
                 "maxlength": ""
             },
             {
+                "key": "field_62f463ae8b079",
+                "label": "Call to Action",
+                "name": "blocks-cta",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
+            },
+            {
                 "key": "field_6282437255d09",
                 "label": "Summary",
                 "name": "blocks-summary",
@@ -276,7 +307,9 @@
                 },
                 "choices": {
                     "title": "Title",
-                    "summary": "Summary"
+                    "cta": "Call to Action",
+                    "summary": "Summary",
+                    "innerblocks": "InnerBlocks"
                 },
                 "allow_custom": 0,
                 "default_value": "title",
@@ -392,6 +425,25 @@
                 "height": ""
             },
             {
+                "key": "field_62f478784ac8e",
+                "label": "HTML",
+                "name": "blocks-html",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "tabs": "all",
+                "toolbar": "full",
+                "media_upload": 1,
+                "delay": 0
+            },
+            {
                 "key": "field_62824f6cba695",
                 "label": "Select fields to show",
                 "name": "blocks-show-fields-media",
@@ -406,7 +458,8 @@
                 },
                 "choices": {
                     "image": "Image",
-                    "video": "Video"
+                    "video": "Video",
+                    "svg": "HTML"
                 },
                 "allow_custom": 0,
                 "default_value": "image",
@@ -464,11 +517,11 @@
                     "id": ""
                 },
                 "choices": {
-                    "demo-info.php": "demo-info",
-                    "demo-infobox.php": "demo-infobox",
-                    "h1-title.php": "h1-title",
-                    "media.php": "media",
-                    "orange.php": "orange"
+                    "default.php": "default",
+                    "infobg.php": "infobg",
+                    "infoblock.php": "infoblock",
+                    "infomedia.php": "infomedia",
+                    "mediainfo.php": "mediainfo"
                 },
                 "default_value": false,
                 "allow_null": 0,
